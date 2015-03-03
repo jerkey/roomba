@@ -53,6 +53,7 @@ def main(*arg):
     song = [140,0,1,62,12]
     playsong = [141,0]
     drive = [137,0,00,128,0]
+    speed = 200 # maximum 500 mm/s
     bot.cmnd(''.join(map(chr, fullmode+song+playsong)))
     bot.go(0,0)
     press = screen.getch()
@@ -62,21 +63,23 @@ def main(*arg):
         press = screen.getch()
       bot.cmnd(''.join(map(chr, song+playsong)))
       if press == ord('j'): #back
-        bot.go(-200,-32768)
+        bot.go(-speed,-32768)
         time.sleep(1)
         bot.go(0,0)
       if press == ord('k'): #fwd
-        bot.go(200,-32768)
+        bot.go(speed,-32768)
         time.sleep(1)
         bot.go(0,0)
       if press == ord('h'): #left
-        bot.go(200,1)
+        bot.go(speed,1)
         time.sleep(0.5)
         bot.go(0,0)
       if press == ord('l'): #right
-        bot.go(200,-1)
+        bot.go(speed,-1)
         time.sleep(0.5)
         bot.go(0,0)
+      if (press >= ord('0')) & (press <= ord('9')): #set speed
+        speed = 50 * (press - 47)
 
 if __name__=='__main__':
     sys.exit(main(*sys.argv))
