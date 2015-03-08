@@ -50,7 +50,8 @@ def main(*arg):
     # bot.cmnd(''.join(map(chr, [128,132,139,2,0,0])))
     fullmode = [128,132]
     #song = [140,0,4,62,12,66,12,69,12,74,36]
-    song = [140,0,1,62,12]
+    song = [140,0,1,62,4]
+    songmk = [140,0,2,74,12,66,12]
     playsong = [141,0]
     drive = [137,0,00,128,0]
     speed = 200 # maximum 500 mm/s
@@ -78,6 +79,8 @@ def main(*arg):
         bot.go(speed,-1)
         time.sleep(0.5)
         bot.go(0,0)
+      if press == ord('p'): #justsong
+        bot.cmnd(''.join(map(chr, songmk+playsong)))
       if (press >= ord('0')) & (press <= ord('9')): #set speed
         speed = 50 * (press - 47)
 
