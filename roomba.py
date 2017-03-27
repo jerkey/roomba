@@ -4,8 +4,8 @@ import struct
 import serial
 import time
 
-#serialPort = '/dev/ttyUSB0'
-serialPort = '/dev/tty.SLAB_USBtoUART'
+serialPort = '/dev/ttyUSB0'
+#serialPort = '/dev/tty.SLAB_USBtoUART'
 baudRate = 57600
 
 class robot:
@@ -46,8 +46,9 @@ def main(*arg):
     midX = int(screenSize[1]/2)
     screen.keypad(1)  #nothing works without this
     bot = robot()
-    print bot.init(serialPort , baudRate)
-    # bot.cmnd(''.join(map(chr, [128,132,139,2,0,0])))
+    screen.erase()
+    screen.addstr(bot.init(serialPort , baudRate))
+    bot.cmnd(''.join(map(chr, [128,132,139,2,0,0])))
     fullmode = [128,132]
     #song = [140,0,4,62,12,66,12,69,12,74,36]
     song = [140,0,1,62,12]
